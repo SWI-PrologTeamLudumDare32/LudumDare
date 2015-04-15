@@ -26,10 +26,10 @@
 
 % load our application server
 :- ensure_loaded(load).
-:- use_module(strangeloop).
+:- use_module(ludumdare).
 
 %
 % And start that puppy
-:- strangeloop_server.
+:- ludum_server.
 
 

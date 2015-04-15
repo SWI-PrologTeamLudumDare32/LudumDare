@@ -5,6 +5,10 @@
 
 */
 
+
+:- setting(port, integer, 7777, 'Port to run server on').
+
+
 % Make sure we're on a reasonable version
 %
 
@@ -64,13 +68,15 @@ http:location(pldoc, root('help/source'), [priority(10)]).
 
 % Now we can start pldoc. This starts our application server
 % as well, a workaround for one server per process
-:- doc_server(7777).
+:- setting(port, Port), doc_server(Port).
 
 % Nice thing about SWI-Prolog, the interface to most
 % development environment is fairly simple, so it's practical
 % to set your environment for your own convenience. Here, we
 % launch our first handler
-:-www_open_url('http://localhost:7777/').
+:- setting(port, Port),
+	format(atom(X), 'http://localhost:~w', [Port]),
+	www_open_url(X).
 
 % and bring up a module in the editor
 :- edit('debug_start.pl').
