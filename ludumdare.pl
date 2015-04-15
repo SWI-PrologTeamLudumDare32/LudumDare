@@ -19,14 +19,14 @@ version) or load.pl (production).
 % and the standard handler dispatcher
 :- use_module(library(http/http_dispatch)).
 
-:- setting(port, integer, 7777, 'Port to run server on').
+:- setting(production_port, integer, 7777, 'Port to run server on').
 
 %%	ludumdare_server is det
 %
 %	Start the ludumdare server on 7777
 %
 ludumdare_server :-
-	setting(port, Port),
+	setting(production_port, Port),
 	ludumdare_server(Port).
 
 %%	ludumdare_server(+Port:int) is det
