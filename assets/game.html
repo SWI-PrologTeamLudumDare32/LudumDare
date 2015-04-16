@@ -1,0 +1,139 @@
+<html>
+  <head>
+  <title>Ludum Dare test</title>
+    <script type="text/javascript" src="/f/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/js/pengines.js"></script>
+    <script type="text/javascript" src="https://code.createjs.com/createjs-2014.12.12.min.js"></script>
+    <script type="text/javascript" src="https://code.createjs.com/preloadjs-0.6.0.min.js"></script>
+    <script type="text/javascript">
+      var stage;
+      var humanSprites;
+      var player;
+      var keyboard = new Array();
+
+      (function() {
+        function Human() {
+          this.Container_constructor();
+          this.character = new createjs.Sprite(humanSprites, "stand");
+          this.character.play();
+          this.addChild(this.character);
+          this.animation = "stand";
+          this.walkSpeed = 3;
+        }
+        var p = createjs.extend(Human, createjs.Container);
+        window.Human = createjs.promote(Human, "Container");
+
+        p.playAnimation = function(name) {
+          if (this.animation == name) {
+            return; 
+          } else {
+            this.animation = name;
+            this.character.gotoAndPlay(name);
+          }
+        }
+        p.walkLeft = function() {
+          this.x = this.x - this.walkSpeed;
+          this.playAnimation("walk_left");
+        }
+        p.walkRight = function() {
+          this.x = this.x + this.walkSpeed;
+          this.playAnimation("walk_right");
+        }
+        p.walkUp = function() {
+          this.y = this.y - this.walkSpeed;
+          this.playAnimation("walk_back");
+        }
+        p.walkDown = function() {
+          this.y = this.y + this.walkSpeed;
+          this.playAnimation("walk_front");
+        }
+        p.stand = function() { this.playAnimation("stand"); }
+      }());
+
+      function init() {
+        var preload = new createjs.LoadQueue();
+        preload.addEventListener("fileload", startGame);
+        preload.loadFile("/f/img/human_sprites_ALL.gif");
+        preload.loadFile("/f/img/human_sprites_hair.png");
+        preload.loadFile("/f/img/human_sprites_0_SHOES.gif");
+        preload.loadFile("/f/img/human_sprites_0_HOODIE.gif");
+        preload.loadFile("/f/img/human_sprites_0_JEANS.gif");
+      }
+      
+      function startGame() {
+        stage = new createjs.Stage("demoCanvas");
+        var circle = new createjs.Shape();
+        circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
+        circle.x = 100;
+        circle.y = 100;
+        stage.addChild(circle);
+
+        humanSprites = new createjs.SpriteSheet({
+          "images": ["/f/img/human_sprites_ALL.gif"],
+          "frames": [
+            // walk front
+            [19 + 16 * 0, 19, 16, 33],
+            [19 + 16 * 1, 19, 16, 33],
+            [19 + 16 * 2, 19, 16, 33],
+            [19 + 16 * 3, 19, 16, 33],
+            [19 + 16 * 4, 19, 16, 33],
+            [19 + 16 * 5, 19, 16, 33],
+            [19 + 16 * 6, 19, 16, 33],
+            [19 + 16 * 7, 19, 16, 33],
+            // walk back
+            [19 + 16 * 0, 88, 16, 33],
+            [19 + 16 * 1, 88, 16, 32],
+            [19 + 16 * 2, 88, 16, 32],
+            [19 + 16 * 3, 88, 16, 32],
+            [19 + 16 * 4, 88, 16, 32],
+            [19 + 16 * 5, 88, 16, 32],
+            [19 + 16 * 6, 88, 16, 32],
+            [19 + 16 * 7, 88, 16, 32],
+            // walk right
+            [20 + 14 * 0, 54, 14, 33],
+            [20 + 14 * 1, 54, 14, 33],
+            [20 + 14 * 2, 54, 14, 33],
+            [20 + 14 * 3, 54, 14, 33],
+            // walk left
+            [89 + 14 * 0, 54, 14, 33],
+            [89 + 14 * 1, 54, 14, 33],
+            [89 + 14 * 2, 54, 14, 33],
+            [89 + 14 * 3, 54, 14, 33],
+          ],
+          "animations": {
+             "walk_front": [0, 7],
+             "walk_back": [8, 15],
+             "walk_right": [16, 19],
+             "walk_left": [20, 23],
+             "stand": [4, 4]
+          },
+        });
+
+        player = new Human();
+        player.x = 100;
+        player.y = 100;
+        stage.addChild(player);
+        createjs.Ticker.addEventListener("tick", handleTick);
+
+        $(window).keydown(function( event ) {
+          keyboard[event.which] = true;
+        }).keyup(function(evt) {
+          keyboard[event.which] = false;
+        });
+      }
+
+      function handleTick() {
+        stage.update();
+        if (keyboard[39]) { player.walkRight(); } else
+        if (keyboard[37]) { player.walkLeft(); } else 
+        if (keyboard[40]) { player.walkDown(); } else 
+        if (keyboard[38]) { player.walkUp(); } else 
+        { player.stand(); }
+      }
+    </script>
+  </head>
+  <body onload="init();">
+    <canvas id="demoCanvas" width="500" height="300"></canvas>
+  </body>
+</html>
+
