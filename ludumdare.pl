@@ -1,4 +1,4 @@
-:- module(ludumdare, [ludumdare_server/0]).
+:- module(ludumdare, [ludum_server/0]).
 /** <module> Main predicates for the demo server for ludumdare 32
 
 This module contains the main predicates for the server.
@@ -18,6 +18,9 @@ version) or load.pl (production).
 :- use_module(library(http/thread_httpd)).
 % and the standard handler dispatcher
 :- use_module(library(http/http_dispatch)).
+:- use_module(library(settings)).
+
+:- load_settings('settings.db').
 
 :- setting(production_port, integer, 7777, 'Port to run server on').
 
@@ -25,7 +28,7 @@ version) or load.pl (production).
 %
 %	Start the ludumdare server on 7777
 %
-ludumdare_server :-
+ludum_server :-
 	setting(production_port, Port),
 	ludumdare_server(Port).
 

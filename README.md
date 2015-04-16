@@ -12,6 +12,22 @@ debug_start page, opens the navigator, and opens the root web page.
 to start in production mode consult production.pl
 as of this writing thats not working, owign to the settings bizarrity
 
+to change the port to start on generate a settings.db file. Please *do not* check this file in.
+To generate file:
+
+~~~~~
+?- set_setting(debug_start:debug_port, 8080).  % or whatever port you want to debug on
+
+
+?- set_setting(ludumdare:production_port, 80). % or whatever port you run in production
+~~~~~
+
+then
+
+~~~~~
+?- save_settings.
+~~~~~
+
 ## Pengines demo
 
 Browse  http://localhost:7777/f/hellopengine.html
