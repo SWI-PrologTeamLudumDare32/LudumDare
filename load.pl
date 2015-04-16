@@ -2,6 +2,8 @@
 /** <module> Load this to start the production environment
 
 */
+:- use_module(library(pengines)).
+:- use_module(library(sandbox)).
 
 %
 %  For uses who clone the contentteam project into the same directory as
@@ -27,6 +29,7 @@ user:file_search_path(backend, Location) :-
 :- ensure_loaded(style).
 :- ensure_loaded(library(http/http_session)).
 
+:-use_module(pengine_sandbox:hellopengine).
 
 
 

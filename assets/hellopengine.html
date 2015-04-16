@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Hello Pengine demo page</title>
+        <script src="/f/jquery-2.0.3.min.js"></script>
+		<!-- prefix /js in this line is a location created by the pengines stuff -->
+        <script src="/js/pengines.js"></script><!-- dont change prefix of this lest you know what your doing -->
+		<!-- some prolog that will be asserted into the pengine slave before execution -->
+        <script type="text/x-prolog">
+
+	   q(X) :- p(X).
+
+	   p(a).
+	   p(b).
+	   p(c).
+	   p(d).
+	   p(e).
+	   p(f).
+	   p(g).
+
+        </script>
+		<!-- and now for some javascript glue. We make two pengines and use them to populate some divs -->
+        <script>
+		// make a pengine that executes the above q/1 query, one solution per button press
+            var pengine = new Pengine({
+                oncreate: handleCreate,
+                onsuccess: handleSuccess,
+				 onerror: handleSuccess 
+            });
+            function handleCreate () {
+                pengine.ask("q(X)", {
+                    template:'X'
+                });
+            }
+            function handleSuccess() {
+                $('#out').html(this.data);
+            }
+
+			// make a second pengine that calls factorial/2, which has been imported into the sandbox
+			// and is intrinsicly safe, and my_unsafe, which writes a file out and hence is unsafe
+			// loading this page creates a file foo.txt with text in it from this page (bub)
+			// since this engine runs at page load and isn't needed after, we stop it (we don't know if
+			// factorial leaves choice points), and destroy it (to free memory)
+            var pengine2 = new Pengine({
+                oncreate: handleCreate2,
+                onsuccess: handleSuccess2,
+				 onerror: handleSuccess2,
+				 onstop: zap,
+				 ondestroy: function() { }
+            });
+            function handleCreate2 () {
+                pengine2.ask("factorial(5, X), my_unsafe(bub)", {
+                    template:'X'
+                });
+            }
+            function handleSuccess2() {
+                $('#out2').html(this.data);
+				pengine2.stop();
+				// pengine2.destroy();
+            }
+			
+			function zap() {
+			    pengine2.destroy();
+			}
+        </script>
+        </script>
+</head>
+<body>
+        <div>?- q(X).</div>
+        <div id="out"></div>
+
+        <button onclick="pengine.next()">Next</button>
+		
+		<div>?- factorial(5, X).</div>
+        <div id="out2"></div>
+</body>
+</html>
