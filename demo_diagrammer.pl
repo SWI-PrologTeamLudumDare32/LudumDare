@@ -93,7 +93,7 @@ http:location(hub, root(hub), []).
 % connection if Goal terminates. Here, we use guarded(false) to tell the
 % server we will take responsibility for the websocket.
 
-:- http_handler(hub(.),    diagrammer_page,      []).
+:- http_handler(hub(.),	diagrammer_page, []).
 :- http_handler(hub(chat),
 		http_upgrade_to_websocket(
 		    accept_chat,
