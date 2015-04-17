@@ -28,9 +28,28 @@ user:file_search_path(backend, Location) :-
 :- ensure_loaded(static_handlers).
 :- ensure_loaded(style).
 :- ensure_loaded(library(http/http_session)).
+:- use_module(library(http/http_dispatch)).
+:- use_module(library(http/http_server_files)).
 
 :-use_module(pengine_sandbox:hellopengine).
 
+http:location(img, root(img), []).
+http:location(js, root(js), []).
+http:location(css, root(css), []).
+user:file_search_path(img, './img').
+user:file_search_path(js, './js').
+user:file_search_path(css, './css').
+
+
+:- use_module(demo_diagrammer).
+:- start_hubs.
+
+:- http_handler(root(img),
+		serve_files_in_directory(img), [prefix]).
+:- http_handler(root(js),
+		serve_files_in_directory(js), [prefix]).
+:- http_handler(root(css),
+		serve_files_in_directory(css), [prefix]).
 
 
 

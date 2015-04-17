@@ -1,0 +1,92 @@
+/* CSS for the Diagrammer application */
+
+body {
+    font-family: monospace;
+    font-size: 14px;
+}
+input {
+    width: 240px;
+    padding: 4px;    
+}
+input.arg {
+    width: 110px;
+}
+input.radio {
+    width: 20px;
+    padding: 2px;
+}
+button {
+    margin: 8px 1px;
+}
+
+
+.componentbar {
+	width: 64px;
+	background-color: #888888;
+	display: inline-block;
+	vertical-align: top;
+	padding: 6px;
+	border: 1px solid black;
+	margin: 0;
+	min-height: 600px;
+}
+
+#diagrammer .componentbar img {
+	width: 64px;
+	height: 64px;
+	display: block;
+	padding: 2px;
+}
+
+#diagrammer .componentbar img.selected {
+	border: 2px solid #444444;
+	padding: 0px;
+}
+
+/* dont define width & height of canvas in css, it messes with the scale */
+.drawarea {
+	background-color: #AAAAAA;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	border-right: 1px solid black;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+#diagrammer .drawarea .rect {
+	width: 50px;
+	height: 50px;
+	background-color: #ff8888;
+	border: 1px solid #000;
+	position: absolute;
+}
+
+#diagrammer .drawarea .oval {
+	width: 50px;
+	height: 50px;
+	background-color: #88ff88;
+	border: 1px solid #000;
+	position: absolute;
+}
+
+#diagrammer .drawarea .diamond {
+	width: 50px;
+	height: 50px;
+	background-color: #8888ff;
+	border: 1px solid #000;
+	position: absolute;
+}
+
+#dia_textentry {
+	background-color:  #888888;
+	border: 1px solid #000;
+	position: absolute;
+	z-index: 5;
+	display: none;
+}
+
+.canvas-container {
+	display: inline;
+}
+

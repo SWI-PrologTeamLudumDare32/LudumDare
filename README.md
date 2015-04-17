@@ -41,6 +41,17 @@ Also called by the second pengine is my_unsafe/1, which appends its argument to 
 to a file named foo.txt.   Obviously writing files is usually unsafe, but we control the file name, and we limit the length
 to 25 chars, so it's safe to do.
 
+## Whiteboard demo
+
+Browse  http://localhost:7777/hub/
+
+Draw some nodes and arcs. Left click to make a new node. Left drag starting within one to move it.
+Right drag to connect nodes with arcs.
+
+then open a second browser page on the same http://localhost:7777/hub/
+
+Whee - collaboration.
+
 
 
 

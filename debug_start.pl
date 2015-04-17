@@ -15,7 +15,7 @@
 % Make sure we're on a reasonable version
 %
 
-check_version :- current_prolog_flag(version, X), X > 70129,!.
+check_version :- current_prolog_flag(version, X), X >= 70135,!.
 check_version :-
       current_prolog_flag(version_data, swi(Major, Minor, Patch, _)),
       format('OOOPS - you need swipl version 7.1.29 or better, you are on ~w.~w.~w~n',
