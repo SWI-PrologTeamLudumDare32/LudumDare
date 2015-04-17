@@ -66,6 +66,11 @@ use arrow keys to move
 
 in hubmaker.pl
 
+Demo in http://localhost:7777/hubdemo   
+
+Open this page in two or more browser windows and type something in the boxe in one of them
+It'll appear in the others
+
 ## Ludum Dare
 
 We'll submit our game in the hour after it ends on monday
