@@ -1,7 +1,7 @@
 :- module(hubmaker, [make_hub/1,
 		     broadcast/2,
 		     current_visitor/2,
-		     hub_script//0]).
+		     hub_script//2]).
 /** <module> API for making hubs easily
  * To use:
  *
@@ -11,13 +11,20 @@
  * 2. the websocket is now at /hub/Name
  *
  * 3. Define a message handler by making a clause of
- *    hubmaker:message_handler/3 with the room name
+ *    hubmaker:message_handler/4 with the room name
  *    as first arg.
  *
  * 4. Optionally define a visitor_handler/5 to intercept leaving and
  * arriving visitors
  *
- * 5.
+ * 5. fill in the predicates defined in 3 and 4 using broadcast and
+ * hub_send
+ *
+ * 6. Make a webpage that includes hub_script//2 for that room, passing
+ * the name of a javascript variable that references a handler function
+ * in second arg. @see hub_script//2
+ *
+ * 7.
  */
 
 :- use_module(library(http/thread_httpd)).
@@ -97,8 +104,14 @@ hub_loop(Room) :-
 
 		 *******************************/
 
-:- multifile message_handler/3.
-%%	message_handler(+Name:atom, +Room:dict, +Message:dict)
+:- multifile message_handler/4.
+%%	message_handler(+Name:atom, +Room:dict, +ID:atom, +Message:dict)
+%
+%	@param Name he room name, extracted so we can unify on it
+%	@param Room the room dict
+%	@param ID   the UUID of the sender
+%	@param Message the whole message. The data is in
+%	Message.get(data, X)
 %
 %   define a clause for this that matches hub name to handle messages
 %   typically one does something like
@@ -108,7 +121,8 @@ hub_loop(Room) :-
 %   to get a prolog term, then
 %	broadcast(Room.name, Message.put(data, SomeAtom))
 %
-%   to broadcast a change, or sometimes hub_send
+%   to broadcast a change, or sometimes hub_send to send to a single
+%   player
 
 :- dynamic
 	visitor/2.			% joined visitors
@@ -135,8 +149,8 @@ hub_loop(Room) :-
 %	dict that defines the Room, handles the message.
 %
 handle_message(Message, Room) :-
-	websocket{opcode:text, data:_} :< Message,
-	message_handler(Room.name, Room, Message).
+	websocket{client:ID, opcode:text, data:_} :< Message,
+	message_handler(Room.name, Room, ID, Message).
 
 % someone joined
 % we are sending all in one hub_send here, but it's not clear that
@@ -181,15 +195,26 @@ current_visitor(Room, ID) :-
 %
 %	Generate the JavaScript  that  establishes   the  websocket  and
 %	handles events on the websocket for this room
+%
+%typical example that evals the incoming data
+%
+%	===
+%	html([{|javascript||var my_handler = function (e) {
+%			console.log(e.data);
+%			var data = eval(e.data);
+%	      };|},
+%	  \hub_script(lobby, my_handler)]).
+%	===
 
-hub_script(Room) -->
+
+hub_script(Room, Handler) -->
 	html_requires(js('hub.js')),
 	{ atom_concat(Room, '_websocket', WebsocketName),
 	  http_link_to_id(WebsocketName, [], WebSocketURL)
 	},
-	js_script({|javascript(WebSocketURL)||
+	js_script({|javascript(WebSocketURL, Handler)||
 $(document).ready(function() {
-    ws_initialize(WebSocketURL);
+    ws_initialize(WebSocketURL, Handler);
 });
 		  |}).
 

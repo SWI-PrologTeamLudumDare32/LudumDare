@@ -52,6 +52,21 @@ then open a second browser page on the same http://localhost:7777/hub/
 
 Whee - collaboration.
 
+## Javascript demo game
+
+Grzegorz has provided a starter js game in createjs.com 's system
+
+you can see it at
+
+http://localhost:7777/f/game.html
+
+use arrow keys to move
+
+## generic factory for hubs 
+
+in hubmaker.pl
+
+
 
 
 

@@ -1,7 +1,8 @@
 
+		  
 var ddd = {};
 	
-var ws_initialize = function(WebSocketURL) {
+var ws_initialize = function(WebSocketURL, MessageHandler) {
 
     ddd = {
 	pengine: undefined,
@@ -24,10 +25,7 @@ var ws_initialize = function(WebSocketURL) {
               };
 
 			  /* you probably want to change this */
-        connection.onmessage = function (e) {
-			console.log(e.data);
-			var data = eval(e.data);
-	      };
+        connection.onmessage = MessageHandler;
 	},
 
         sendChat: function(msg) {
@@ -37,4 +35,6 @@ var ws_initialize = function(WebSocketURL) {
 
     ddd.openWebSocket();
 };
+
+
 
