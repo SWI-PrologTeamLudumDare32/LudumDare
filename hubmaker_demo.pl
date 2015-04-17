@@ -22,7 +22,7 @@ hub_demo(_Request) :-
 hub_demo_page -->
 	{
             gensym(id, ID),
-            format(atom(Send), 'ddd.sendChat(\'~w\')', [ID])
+            format(atom(Send), 'ddd.sendChat(this.value)', [ID])
         },
 	html([
 	    h1('Hub Demo Page'),
@@ -34,7 +34,12 @@ hub_demo_page -->
 	  input([type(text), onchange(Send), name(foo), value('type here')], []),
 	  \hub_script(demo, my_handler)]).
 
-:- multifile message_handler/4.
+:- multifile hubmaker:message_handler/4.
 
-handle_message(Message, _Room) :-
-	debug(chat, 'Ignoring message ~p', [Message]).
+hubmaker:message_handler(demo, _Room, _ID, Message) :-
+	websocket{opcode:text, data:String} :< Message,
+	format(atom(A), '$("#messages").append("~w");', [String]),
+	NewMessage = Message.put(data, A),
+	broadcast(demo, NewMessage),
+        debug(chat, 'Broadcast: ~p', [NewMessage]).
+
