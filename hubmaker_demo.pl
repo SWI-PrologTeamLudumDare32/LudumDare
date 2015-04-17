@@ -36,8 +36,5 @@ hub_demo_page -->
 
 :- multifile message_handler/4.
 
-message_handler(demo, _Room, _ID, Message) :-
-	websocket{opcode:text, data:String} :< Message,
-	format(atom(A), '$("#messages").append("~w");', [String]),
-	Message.put(data, A),
-	broadcast(demo, Message).
+handle_message(Message, _Room) :-
+	debug(chat, 'Ignoring message ~p', [Message]).

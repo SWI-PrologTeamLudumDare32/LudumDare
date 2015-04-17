@@ -25,7 +25,7 @@ var ws_initialize = function(WebSocketURL, MessageHandler) {
               };
 
 			  /* you probably want to change this */
-        connection.onmessage = MessageHandler;
+        connection.onmessage = function(e) { window[MessageHandler](e); }
 	},
 
         sendChat: function(msg) {

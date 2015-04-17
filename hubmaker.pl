@@ -86,8 +86,14 @@ make_hub(Name) :-
 %       Add a user to the hub
 
 accept_chat(Hub, WebSocket) :-
-	hub_add(Hub, WebSocket, _Id).
+	hub_add(Hub, WebSocket, "static_hub_uuid").
 
+message_handler(demo, _Room, _ID, Message) :-
+	websocket{opcode:text, data:String} :< Message,
+	format(atom(A), '$("#messages").append("~w");', [String]),
+	NewMessage = Message.put(data, A),
+	broadcast(demo, NewMessage),
+        debug(chat, 'Broadcast: ~p', [NewMessage]).
 %%	hub_loop(+Room)
 %
 %	Realise the hubs main loop: listen  for an event, update the
