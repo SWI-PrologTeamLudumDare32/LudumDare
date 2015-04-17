@@ -66,6 +66,28 @@ use arrow keys to move
 
 in hubmaker.pl
 
+## Ludum Dare
+
+We'll submit our game in the hour after it ends on monday
+
+Judging
+All participants that submit a game are allowed to judge. Games are given 1-5 star ratings in each category, or N/A where 
+not applicable. The categories include:
+
+ * Innovation – The unexpected. Things in a unique combination, or something so different it’s notable.
+ * Fun – How much you enjoyed playing a game. Did you look up at the clock, and found it was 5 hours later?
+ * Theme – How well an entry suits the theme. Do they perhaps do something creative or unexpected with the theme?
+ * Graphics – How good the game looks, or how effective the visual style is. Nice artwork, excellent generated or geometric graphics, charming programmer art, etc.
+ * Audio – How good the game sounds, or how effective the sound design is. A catchy soundtrack, suitable sound effects given the look, voice overs, etc.
+ * Humor – How amusing a game is. Humorous dialog, funny sounds, or is it so bad it’s good?
+ * Mood – Storytelling, emotion, and the vibe you get while playing.
+ * Overall – Your overall opinion of the game, in every aspect important to you.
+
+In addition, there is a special category Coolness. The more games you play and rate, the higher your score. 
+ALSO: we prioritize people with a higher Coolness. More players will find (and likely) rate your game if you have 
+a high Coolness.
+
+
 
 
 

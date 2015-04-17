@@ -51,7 +51,7 @@ user:file_search_path(css, './css').
 :- http_handler(root(css),
 		serve_files_in_directory(css), [prefix]).
 
-
+:- ensure_loaded(hubmaker_demo).
 
 
 
