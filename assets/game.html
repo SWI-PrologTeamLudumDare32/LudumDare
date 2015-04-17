@@ -8,6 +8,9 @@
     <script type="text/javascript">
       var stage;
       var humanSprites;
+      var humanHoodie;
+      var humanJeans;
+      var humanShoes;
       var player;
       var keyboard = new Array();
 
@@ -15,8 +18,13 @@
         function Human() {
           this.Container_constructor();
           this.character = new createjs.Sprite(humanSprites, "stand");
-          this.character.play();
+          this.characterHoodie = new createjs.Sprite(humanHoodie, "stand");
+          this.characterJeans = new createjs.Sprite(humanJeans, "stand");
+          this.characterShoes = new createjs.Sprite(humanShoes, "stand");
           this.addChild(this.character);
+          this.addChild(this.characterHoodie);
+          this.addChild(this.characterJeans);
+          this.addChild(this.characterShoes);
           this.animation = "stand";
           this.walkSpeed = 3;
         }
@@ -29,6 +37,9 @@
           } else {
             this.animation = name;
             this.character.gotoAndPlay(name);
+            this.characterHoodie.gotoAndPlay(name);
+            this.characterJeans.gotoAndPlay(name);
+            this.characterShoes.gotoAndPlay(name);
           }
         }
         p.walkLeft = function() {
@@ -60,16 +71,9 @@
         preload.loadFile("/f/img/human_sprites_0_JEANS.gif");
       }
       
-      function startGame() {
-        stage = new createjs.Stage("demoCanvas");
-        var circle = new createjs.Shape();
-        circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
-        circle.x = 100;
-        circle.y = 100;
-        stage.addChild(circle);
-
-        humanSprites = new createjs.SpriteSheet({
-          "images": ["/f/img/human_sprites_ALL.gif"],
+      function makeSpriteSheet(path) {
+        return new createjs.SpriteSheet({
+          "images": [path],
           "frames": [
             // walk front
             [19 + 16 * 0, 19, 16, 33],
@@ -108,6 +112,20 @@
              "stand": [4, 4]
           },
         });
+      }
+
+      function startGame() {
+        stage = new createjs.Stage("demoCanvas");
+        var circle = new createjs.Shape();
+        circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
+        circle.x = 100;
+        circle.y = 100;
+        stage.addChild(circle);
+
+        humanSprites = makeSpriteSheet("/f/img/human_sprites_ALL.gif");
+        humanHoodie = makeSpriteSheet("/f/img/human_sprites_0_HOODIE.gif");
+        humanJeans = makeSpriteSheet("/f/img/human_sprites_0_JEANS.gif");
+        humanShoes = makeSpriteSheet("/f/img/human_sprites_0_SHOES.gif");
 
         player = new Human();
         player.x = 100;
