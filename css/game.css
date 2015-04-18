@@ -49,8 +49,14 @@ div {
   height: 20px;
 }
 
+/** Chat styles */
+
 p.chat, p.event {
   margin: 5px;
+}
+
+pre.message {
+  margin-left: 3px;
 }
 
 p.action {
