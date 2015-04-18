@@ -1,0 +1,60 @@
+div {
+  /* Debug only - remove later */
+  border: 1px solid black;
+}
+
+#gameSceen {
+  position: relative;
+  width: 800px;
+  height: 600px;
+}
+
+#npcAvatar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 360px;
+  height: 350px;
+}
+
+#npcMessages {
+  position: absolute;
+  top: 370px;
+  left: 10px;
+  width: 360px;
+  height: 180px;
+}
+
+#inventory {
+  position: absolute;
+  top: 10px;
+  left: 380px;
+  width: 400px;
+  height: 350px;
+}
+
+#actions {
+  position: absolute;
+  top: 370px;
+  left: 380px;
+  width: 400px;
+  height: 180px;
+}
+
+#say {
+  position: absolute;
+  top: 570px;
+  left: 10px;
+  width: 360px;
+  height: 20px;
+}
+
+p.chat, p.event {
+  margin: 5px;
+}
+
+p.action {
+  margin: 5px;
+  text-decoration: underline;
+  cursor: pointer;
+}
