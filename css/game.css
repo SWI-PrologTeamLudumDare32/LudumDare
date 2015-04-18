@@ -11,6 +11,16 @@ div {
 
 #npcAvatar {
   position: absolute;
+  top: 60px;
+  left: 10px;
+  width: 280px;
+  height: 300px;
+  background-size: 280px 300px;
+  background-repeat: no-repeat;
+}
+
+#npcBackground {
+  position: absolute;
   top: 10px;
   left: 10px;
   width: 360px;
@@ -63,4 +73,14 @@ p.action {
   margin: 5px;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.grayscale { 
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: url(grayscale.svg); /* Firefox 4+ */
+  filter: gray; /* IE 6-9 */
 }

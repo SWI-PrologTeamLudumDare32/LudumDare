@@ -19,6 +19,20 @@ $(document).ready(function() {
 
   addAction("give_gun", "Give gun to Martin");
   addAction("goto_8th", "Go to 8th Arondissment");
+
+  addInventory("Notebook");
+
+  if (Math.random() > 0.5) {
+    setLocation("test_paris1");
+  } else {
+    setLocation("test_paris2");
+  }
+
+  if (Math.random() > 0.5) {
+    setBot("test_bot1");
+  } else {
+    setBot("test_bot2");
+  }
 });
 
 function sendChat(botName, chatLine) {
@@ -60,3 +74,24 @@ function addAction(name, text) {
   });
   $("#actions").append(actionBtn);
 }
+
+function setLocation(locName) {
+  locationName = locName;
+  $("#npcBackground").css("background-image", "url(/img/loc/" + locName + ".png)");
+}
+
+function setBot(btName) {
+  botName = btName;
+  if (btName != "None") {
+    $("#npcAvatar").css("background-image", "url(/img/bot/" + btName + ".png)");
+    $("#npcAvatar").show();
+  } else {
+    $("#npcAvatar").hide();
+  }
+}
+
+function addInventory(obj) {
+  $("#invEmpty").hide();
+  $("#invList").append($("<li />").text(obj));
+}
+
