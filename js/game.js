@@ -12,6 +12,9 @@ $(document).ready(function() {
     }
   });
 
+  $("#npcAvatar").click(function(e) { $("#say").focus(); });
+  $("#npcBackground").click(function(e) { $("#say").focus(); });
+
   // sample setup
   say("You", "So, will you join us?");
   say("M.Martin", "Yes, i will fight and die for France!");
