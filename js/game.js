@@ -1,4 +1,4 @@
-var playerId = -1;
+var playerid = -1;
 var botName = "None";
 var locationName = "Void";
 
@@ -36,26 +36,28 @@ $(document).ready(function() {
   } else {
     setBot("test_bot2");
   }
+
+  makeQuery("get_state(" + playerid + ", X)");
 });
 
 function sendChat(botName, chatLine) {
-  pengine.ask(
-    "tell_bot(" + playerId + ",\"" + botName+ "\",\"" + said + "\", X)",
-    { template:'X' });
+  makeQuery("tell_bot(" + playerid + ",\"" + botName+ "\",\"" + chatLine + "\", X)");
 }
 
-var pengine = new Pengine({
-  oncreate: function() {
-    pengine.ask("get_state(" + playerId + ", X)", { template:'X' })
-  },
-  onsuccess: function() {
-    alert(this.data);
-    eval(this.data);
-  },
-  onerror: function() {
-    alert(this.data);
-  } 
-});
+function makeQuery(goal) {
+  return new Pengine({
+    ask: goal,
+    template: "X",
+    onsuccess: function() {
+      var js = this.data[0].functor;
+      eval(js);
+    },
+    onerror: function() {
+      alert(this.data);
+    },
+    ondestroy: function() { }
+  })
+}
 
 function say(who, what) {
   var chatLine = $("<p class=\"chat\"></p>")
@@ -72,8 +74,7 @@ function eventResult(eventText) {
 function addAction(name, text) {
   var actionBtn = $("<p class=\"action\" />").text(text);
   actionBtn.click(function(e) {
-    // TODO: tell_mud
-    alert("Action: " + name);
+    makeQuery("tell_mud(" + playerid + ",\"" + name + "\", X)");
   });
   $("#actions").append(actionBtn);
 }
