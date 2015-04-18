@@ -30,8 +30,12 @@ user:file_search_path(backend, Location) :-
 :- ensure_loaded(library(http/http_session)).
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_server_files)).
+:-ensure_loaded(ldmud).
+:- ensure_loaded(ldchat).
 
 :-use_module(pengine_sandbox:hellopengine).
+:-use_module(pengine_sandbox:ldmud).
+:-use_module(pengine_sandbox:ldchat).
 
 http:location(img, root(img), []).
 http:location(js, root(js), []).
