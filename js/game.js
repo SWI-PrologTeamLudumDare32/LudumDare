@@ -15,11 +15,6 @@ $(document).ready(function() {
   $("#npcAvatar").click(function(e) { $("#say").focus(); });
   $("#npcBackground").click(function(e) { $("#say").focus(); });
 
-  // sample setup
-  say("You", "So, will you join us?");
-  say("M.Martin", "Yes, i will fight and die for France!");
-  eventResult("(Martin takes a gun)");
-
   addAction("give_gun", "Give gun to Martin");
   addAction("goto_8th", "Go to 8th Arondissment");
 
@@ -38,7 +33,22 @@ $(document).ready(function() {
   }
 
   makeQuery("get_state(" + playerid + ", X)");
+
+  setTimeout("init()", 100);
 });
+
+function init() {
+  // sample setup
+  say("You", "So, will you join us?");
+  say("M.Martin", "...");
+  say("You", "So, will you join us?");
+  say("M.Martin", "...");
+  say("You", "So, will you join us?");
+  say("M.Martin", "...");
+  say("You", "So, will you join us?");
+  say("M.Martin", "Yes, i will fight and die for France!");
+  eventResult("(Martin takes a gun)");
+}
 
 function sendChat(botName, chatLine) {
   makeQuery("tell_bot(" + playerid + ",\"" + botName+ "\",\"" + chatLine + "\", X)");
@@ -62,16 +72,18 @@ function makeQuery(goal) {
 function say(who, what) {
   var chatLine = $("<p class=\"chat\"></p>")
     .append($("<span class=\"who\"></span>").text(who + ":"))
-    .append($("<pre class=\"message\"/>").typed({
+    .append($("<pre class=\"message\"/>").text("-").typed({
         strings: [what],
         typeSpeed: 0
       }));
   $("#npcMessages").append(chatLine);
+  $('#npcMessages').scrollTop($('#npcMessages').prop("scrollHeight"));  
 }
 
 function eventResult(eventText) {
   var eventLine = $("<p class=\"event\"></p>").text(eventText);
   $("#npcMessages").append(eventLine);
+  $('#npcMessages').scrollTop($('#npcMessages').prop("scrollHeight"));  
 }
 
 function addAction(name, text) {

@@ -54,6 +54,7 @@ div {
   width: 360px;
   height: 180px;
   background-color: #f9ebd4;
+  overflow-y:scroll;
 }
 
 /** Inventory box */
