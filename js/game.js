@@ -62,7 +62,10 @@ function makeQuery(goal) {
 function say(who, what) {
   var chatLine = $("<p class=\"chat\"></p>")
     .append($("<span class=\"who\"></span>").text(who + ":"))
-    .append($("<pre class=\"message\"/>").text(what));
+    .append($("<pre class=\"message\"/>").typed({
+        strings: [what],
+        typeSpeed: 0
+      }));
   $("#npcMessages").append(chatLine);
 }
 
