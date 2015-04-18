@@ -1,0 +1,275 @@
+﻿Mort Pour Le France
+
+
+OSS
+
+Commies vs. DeGaullists
+
+gestapo
+
+direction finding
+
+Jews
+
+Moral dilemmas
+
+hostages
+
+reprisals - hanging scene
+
+torture
+
+disguise
+
+using sex as a weapon
+
+look at the simple sabotage leaflet
+
+Artwork plundering
+
+French POW's
+
+Forced labor
+
+internment camps
+
+money
+
+transport
+
+Get a resistant to distract the guard
+
+springing resistants from prison
+
+forged papers
+
+contraband
+
+the black market
+
+the occupied/unoccupied zones
+
+resource expenditure decisions
+
+What long term decisions must player make?
+
+what scenarios take time and planning?
+
+preparation for D day
+
+everyone gossips about everyone else. This is about 80% accurate.
+
+Vichy collaborators
+
+The Milice
+
+safe houses
+
+The good German
+
+Scared people
+
+radio operators
+
+secret codes
+
+the catacombs
+
+checkpoints
+
+OSS supply drops
+
+OSS agents flown/parachuted in
+
+OSS agents flown out
+
+medicine shortage
+
+'diluted penicillin'
+
+
+
+Use the 'have to get things from the black marketeer' dodge
+
+papers - perhaps expand on them
+
+people who have been 'compromised' "my daughter, they have her in a camp, they made us do it"
+
+Some people are just flaky
+
+What are the constraints, tactical, and strategic decisions?
+
+an important winning strategy is indirection
+
+Have strategies available for members / OSS agents 'under suspicion'
+
+visible progress - your overall goal is to recruit. All else is secondary.
+The first thing you should write is an emotional model 
+
+Factors when deciding to join
+ * attitude towards authority, 'Orneriness' - think of how many KS farmers would join despite the risk, just because they have a f-you attitude towards
+   authority
+ * desire for adventure
+ * community vs. family concern
+ * Ho Chi Minh's rule - is it better for me?
+ * factors making it better to collaborate - 'turn them in for money'
+ * factors making it better to resist - 'after the war it will be good for me'.  'at least I'll eat' 
+ * ability to compromise this person and make them work for you
+ * fear of resistance retaliation
+ * desire to be part of a group
+ * pride/ego/self esteem   - needs flattery
+ * neurotic 'I'm not worthy' if they're over complimented
+ * need to not see self as coward
+ * 'When the resistance has won, then I'll support them'
+ * confidence that the resistance will win
+ * trust in honesty - which goes down if you answer inconsistently or say things that make people think you're not honest
+ * trust in competency
+ * personal attitude - if you insult people they don't like you
+ * submission/resistance - apply pressure, this will either make them agree or increase polarization
+ * love of France
+ * hatred of the nazis, influenced by personal events
+ * fear due to past experiences - e.g. someone who'se been approached by gestapo already
+ * their politics - communists won't be attracted to degaullists
+ * has the contact been developed, or is the approach 'cold'?
+ * recruiter is part of a family, work, or other social group 'cell'.
+
+
+each of these factors must be activated
+
+NPCs ask background questions. if you answer inconsistently they won't trust you after this conversation.
+
+NPC's will sometimes act recruited, then won't be.
+
+Even when people are recruited, they might be flaky, not be competent, or might be compromised
+
+They might be under surveillance
+
+Have a tutorial page that suggests how to recruit, and a 'hints' area that lets you see things you might say.
+
+recruiting is like sales - set them up, then close. But if you close and they're not ready they can go away, or even turn you in.
+
+Recruiting advice on wikipedia:
+https://en.wikipedia.org/wiki/Clandestine_HUMINT_asset_recruiting
+
+
+=========================
+Characters
+
+Monsieur   bbrev. M
+Madame  - married woman (or don't know)   Mme
+Mademoiselle    abbrev Mlle
+Docteur
+
+M. Bronard - 
+A wealthy industrialist.
+He's rumored to be somebody you might want to recruit, but in fact, while he's reluctant to turn you in, he
+will if pressed too far.
+He's secretly a homosexual, you can blackmail him. If you demand too much, he'll turn you in.
+
+Pierre Martine 
+A taxi driver.
+He'll drive you where you want, inside Paris, but flees at the first sign of trouble.
+As a driver he has papers for all areas of the city.
+He hangs out at the taxi stand near the Palace Royal.
+He'll loan his papers and taxi to a resistant to let them get through a checkpoint, but 
+he'll refuse to do anything else for the resistance if the taxi doesn't come back.
+
+'Napoleon' - A black marketeer. 
+You have to hang out in the Le Neuf Chatons Cabaret long enough for him to trust you.
+He's dapper, suave, a ladies man.
+
+Mme Fifi Lejeune
+Owner of the Le Neuf Chatons Cabaret
+Her real name is Florence Ragowitz, she's a jew. Before the war she killed a customer who was roughing up
+a girl, and managed to assume a dead French woman's identity. She didn't leave because she was afraid her
+papers would catch up with her.
+She won't actively join the resistance but will help if asked to do something on the spot, like provide booze for a bribe or
+a place to hide. Napoleon trusts her.
+
+Missak Manouchian
+Leader of the Manouchian Group
+
+A Manouchian
+General member of 'another' resistance group. If approached to try to recruit, will ignore you, and then their leader will approach you.
+
+POWN - the Poles caught 
+
+The night of 22 to 23 July 1943, when Colonel Daniel Zdrojewski was dropped, marks the birth of the POWN - Polska Organizacja Walki o Niepodległości - Polish Organization for the Struggle for Independence.[2] In 1943, the Organization had 4000 members
+
+characters:
+nuns/priests
+
+
+Icons
+================
+Affiche Rouge
+
+MORT POUR LA FRANCE
+
+
+
+Places
+====================
+L'Université de St. Thomas
+
+
+
+Le Neuf Chatons Cabaret
+
+
+
+
+==============
+
+Late tonight or early tomorrow, try to build one of these characters
+
+=========================
+
+
+Tighten the physical surrounding, use a map more like saboteur
+
+You recruit by having people notice you in action. So if you're at remove you can't
+recruit.
+
+Probably want the larger plot to be on rails, like IF game
+
+Have points at which player narrowly escapes police.
+
+Have enough random events that there's replay, but not catastrophic so player feels in control.
+
+
+
+
+missions:
+===============
+
+mark targets for bombers
+Count troops, ships, etc.
+
+be offered an 'off the reservation' target (a bridge, perhaps) by a fellow resistant 
+that the allies don't want you to blow up. Make this 'prove you can be trusted' by a fellow resistance cell.
+
+
+
+Player Verbs:
+move
+chat
+
+
+
+
+rewards:
+guns
+explosives
+information about loyalty
+
+
+
+
+
+
+
+
+
+
+
