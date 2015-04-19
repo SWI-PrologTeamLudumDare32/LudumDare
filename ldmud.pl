@@ -18,15 +18,24 @@
 %	for a new player
 get_state(new, Javascript) :-
 	gensym(player, Player),
+	debug(chatscript(conversation), 'started conversation between ~w and ~w',
+	      [Player, baron]),
 	start_conversation(Player, baron, Said),
+	debug(chatscript(talk),
+	      '~w started by saying ~w to ~w', [baron, Said, Player]),
 	format(string(Javascript),
-	       'playerid = \'~w\'; setLocation("Mansion"), setBot("Baron"); say("Baron", "~w"); addAction("go_park", "Go to park")', [Player, Said]).
+	       'playerid = \'~w\'; setLocation("Mansion"), setBot("Baron"); say("Baron", "~w"); addAction("go_park", "Go to park")', [Player, Said]),
+	debug(chatscript(javascript), '~w', [Javascript]).
+
 get_state(ID, Javascript) :-
 	ID \= new,
 	gensym(player, Player),  % punt and give them a new player
+	debug(chatscript(conversation), 'no page reload yet, making new ~',
+	      [Player]),
 	format(string(Javascript),
 	       'playerid = \'~w\'; alert(\'we dont support page reload yet\');',
-	       [Player]).
+	       [Player]),
+	debug(chatscript(javascript), '~w', [Javascript]).
 
 %%	tell_mud(+ID:atom, +Bot:atom, +Message:string, -Reply:string) is
 %	det
@@ -37,8 +46,14 @@ get_state(ID, Javascript) :-
 %	@param Message   what the user typed in
 %	@param Reply    The mud's reply, javascript to execute
 tell_mud(ID, Message, Reply) :-
+<<<<<<< HEAD
 	format(string(Reply), 'notify(\'mud replied to ~w, who said ~w\');',
 	       [ID, Message]).
+=======
+	format(string(Reply), 'eventResult(\'mud replied to ~w, who said ~w\');',
+	       [ID, Message]),
+	debug(ldmud(javascript), '~w', [Reply]).
+>>>>>>> afb7dc02c91b3c2ceb8cbd85c990500c635b1fba
 
 :- multifile sandbox:safe_primitive/1.
 

@@ -22,9 +22,15 @@
 %	@Reply    The bot's reply, javascript to execute
 tell_bot(ID, Bot, Message, Reply) :-
 	talk(ID, Bot, Message, BotSaid),
+	debug(chatscript(talk),
+	      '~w said ~w to ~w', [ID, Message, Bot]),
+	debug(chatscript(talk),
+	      '~w said ~w to ~w', [Bot, BotSaid, ID]),
 	format(string(Reply),
                'processCommands([ {func:"say", args:["You", "~w"]}, {func:"say", args:["~w", "~w"]} ]);',
-	       [Message, Bot, BotSaid]).
+	       [Message, Bot, BotSaid]),
+	debug(chatscript(javascript),
+	      '~w', [Reply]).
 
 :- multifile sandbox:safe_primitive/1.
 
