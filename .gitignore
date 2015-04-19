@@ -1,3 +1,4 @@
 *.pl~
 settings.db
 /foo.txt
+/design/*.odt#

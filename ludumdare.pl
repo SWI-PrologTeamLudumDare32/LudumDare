@@ -24,12 +24,16 @@ version) or load.pl (production).
 
 :- setting(production_port, integer, 7777, 'Port to run server on').
 
+:- setting(chatscript_location, acyclic, localhost:1024, 'Location of the chatscript engine, usually domain:port').
+
+
 %%	ludumdare_server is det
 %
 %	Start the ludumdare server on 7777
 %
 ludum_server :-
 	setting(production_port, Port),
+
 	ludumdare_server(Port).
 
 %%	ludumdare_server(+Port:int) is det

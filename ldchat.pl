@@ -5,6 +5,11 @@
 
 :- use_module(library(pengines)).
 :- use_module(library(sandbox)).
+:- use_module(chatscript).
+:- use_module(library(settings)).
+
+:- initialization setting(ludumdare:chatscript_location, Loc),
+	set_chatscript_address(Loc).
 
 %%	tell_bot(+ID:atom, +Bot:atom, +Message:string, -Reply:string) is
 %	det
