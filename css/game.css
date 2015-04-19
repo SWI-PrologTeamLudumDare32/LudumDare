@@ -1,13 +1,38 @@
 div {
   /* Debug only - remove later */
-  border: 1px solid black;
+  /* border: 1px solid black; */
+}
+
+@font-face {
+  font-family: 'gasmaskFont';
+  src: url("/f/GASMASK.TTF") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#title {
+  font-family: 'gasmaskFont';
+  font-size: 36px;
+  margin-left: 40px;
 }
 
 #gameSceen {
   position: relative;
   width: 800px;
   height: 600px;
+  background-color: #d9465d;
+  border: 5px solid black;
 }
+
+#overlay {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: #000000;
+  border: 5px solid black;
+}
+
+/** Avatar box */
 
 #npcAvatar {
   position: absolute;
@@ -25,7 +50,10 @@ div {
   left: 10px;
   width: 360px;
   height: 350px;
+  background-color: #f9ebd4;
 }
+
+/** Messages box */
 
 #npcMessages {
   position: absolute;
@@ -33,7 +61,11 @@ div {
   left: 10px;
   width: 360px;
   height: 180px;
+  background-color: #f9ebd4;
+  overflow-y:scroll;
 }
+
+/** Inventory box */
 
 #inventory {
   position: absolute;
@@ -41,7 +73,34 @@ div {
   left: 380px;
   width: 400px;
   height: 350px;
+  background-color: #f9ebd4;
 }
+
+#inventory span {
+  margin-left: 10px;
+  font-family: 'gasmaskFont';
+  font-size: 20px;
+}
+
+p.chat, p.event {
+  margin: 5px;
+}
+
+span.who {
+  font-weight: bold;
+}
+
+pre.message {
+  margin-left: 12px;
+
+  white-space: pre-wrap;       /* CSS 3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/** Actions box */
 
 #actions {
   position: absolute;
@@ -49,30 +108,40 @@ div {
   left: 380px;
   width: 400px;
   height: 180px;
+  background-color: #f9ebd4;
+}
+
+p.action {
+  margin: 5px 5px 5px 20px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#actions span {
+  margin-left: 10px;
+  font-family: 'gasmaskFont';
+  font-size: 20px;
+}
+
+/** Say box */
+
+#sayLabel {
+  position: absolute;
+  top: 565px;
+  left: 10px;
+  width: 30px;
+  height: 20px;
+  font-family: 'gasmaskFont';
+  font-size: 20px;
 }
 
 #say {
   position: absolute;
   top: 570px;
-  left: 10px;
-  width: 360px;
+  left: 60px;
+  width: 660px;
   height: 20px;
-}
-
-/** Chat styles */
-
-p.chat, p.event {
-  margin: 5px;
-}
-
-pre.message {
-  margin-left: 3px;
-}
-
-p.action {
-  margin: 5px;
-  text-decoration: underline;
-  cursor: pointer;
+  background-color: #f9ebd4;
 }
 
 .grayscale { 

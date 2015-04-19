@@ -2,24 +2,30 @@
   <head>
     <title>Francs Tireurs</title>
     <script type="text/javascript" src="/f/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/js/typed.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.balloon.min.js"></script>
     <script type="text/javascript" src="/js/pengines.js"></script>
     <script type="text/javascript" src="/js/game.js"></script>
+    <script type="text/javascript" src="/js/tutorial.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/game.css">
   </head>
   <body>
+    <div id="title">Francs Tireurs</div>
     <div id="gameSceen">
       <div id="npcBackground" class="grayscale" ></div>
       <div id="npcAvatar" class="grayscale" ></div>
       
       <div id="inventory">
-        <span> Inventory </span> <br />
+        <span> Inventory: </span> <br />
         <div id="invEmpty">(empty)</div>
         <ul id="invList">
         </ul>
       </div>
       <div id="npcMessages"></div>
-      <div id="actions"></div>
-      <input type="text" id="say" value="Death to enemies!"></input>
+      <div id="actions"><span> Actions: </span> <br /></div>
+      <span id="sayLabel"> Say: </span>
+      <input type="text" id="say" value=""></input>
     </div>
+    <div id="overlay" style="display: none;"></div>
   </body>
 </html>
