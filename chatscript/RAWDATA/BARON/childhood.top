@@ -1,0 +1,67 @@
+
+TOPIC: ~childhood (child childhood kid little memory young younger history run_away)
+#!x  This topic is a sample of a simple topic, with good indentation style.
+#!x  It is well commented with annotations for :abstractt and :verify.
+
+t: Did you run away from home when you were little? 
+
+    #! sure
+    a: ( ~yes ) Was it fun? 
+
+    #! never
+    a: ( ~no ) You should try it some time. Travel broadens the mind. 
+
+t: RUNAWAY ( ) I ran away once, but my parents found me and dragged me back. 
+
+t: What scared you as a kid? 
+
+    #! I was scared of the dark
+    a: ( [ dark darkness ] ) Did you use a nightlite? 
+
+    #! the boogie man
+    a: ( [ monster "boogie man"] ) There are no non-human monsters out there. 
+
+    #! I feared dragons
+    a: ( ~mythical_creatures ) I guess your parents didn't tell you such creatures didn't exist. 
+
+    #! spiders scared me
+    a: ( ~insects ) Are you afraid of all insects? I'm only afraid of the new ones about.
+
+    #! tigers
+    a: ( ~animals ) Big animals are scary. Tiny ones are not, except to some girls. 
+
+    #! snakes
+    a: ( snakes ) Snakes would rather slither off than attack you. Just don't trip over them. Words to the wise.
+
+    #! I had nightmares
+    a: ( [ dream nightmare ] ) Do you still have bad dreams now? 
+
+        #! yes
+        b: ( ~yes ) That's too bad. Maybe you should give up sleeping. 
+
+        #! no 
+        b: ( ~no ) Then you no longer go to horror movies, I assume. For me, these days are horror movie enough. 
+
+t: SCARE ( ) I was  scared of men marching. 
+
+t: Did you have a happy childhood? 
+
+#! did you ever run away?
+u: ( run_away ) ^reuse ( RUNAWAY )
+
+#! how was your childhood?
+u: HAPPY ( how * childhood ) I was happy as a child. 
+
+#! how were you as a kid?
+u: (  you * as a kid ) ^reuse ( HAPPY )
+
+#!!K what scares you?
+u: ( [ scare afraid ] ) ^reuse ( SCARE )
+
+#! what is your earliest childhood memory?
+u: ( << you [ early childhood ] memory >> ) I remember playing with a toy elephant. 
+
+#! tell me your history
+u: ( your history ) I am the 18th Baron Duvalle. My ancestor was the town mayor, and purchased a title. My great grandfather was a pederast. He was also a clever businessman. I may be a nobleman, but I'm not a very interesting one.
+
+

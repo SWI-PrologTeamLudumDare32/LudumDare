@@ -1,0 +1,7 @@
+~germans (germans germans krauts nazis gestapo ss)
+~police (police gestapo cops milice)
+~fear_word (torture ~jail ~police danger fear scare frighten terror "what if they come")
+~milice (milice cops "french police")
+~war (the_war struggle conflict occupation)
+~papers (papers transit_papers identity card)
+	
