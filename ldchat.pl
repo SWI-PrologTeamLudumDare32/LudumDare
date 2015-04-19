@@ -21,8 +21,9 @@
 %	@Message   what the user typed in
 %	@Reply    The bot's reply, javascript to execute
 tell_bot(ID, Bot, Message, Reply) :-
+	talk(ID, Bot, Message, BotSaid),
 	format(string(Reply), 'sayMulti([{who:"You", what:"~w"}, {who:"~w", what:"said ~w"}]);',
-	       [Message, Bot, Message]).
+	       [Message, Bot, BotSaid]).
 
 :- multifile sandbox:safe_primitive/1.
 
