@@ -6,6 +6,7 @@
 
 :- use_module(library(pengines)).
 :- use_module(library(sandbox)).
+:- use_module(chatscript).
 
 %%	get_state(+ID:atom, -Javascript:string) is det
 %
@@ -17,8 +18,9 @@
 %	for a new player
 get_state(new, Javascript) :-
 	gensym(player, Player),
+	start_conversation(Player, baron, Said),
 	format(string(Javascript),
-	       'playerid = ~w; alert(\'you called get_state\');', [Player]).
+	       'playerid = ~w; alert(\'you called get_state, baron said ~w\');', [Player, Said]).
 get_state(ID, Javascript) :-
 	ID \= new,
 	gensym(player, Player),  % punt and give them a new player
