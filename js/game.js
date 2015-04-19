@@ -15,6 +15,13 @@ $(document).ready(function() {
   $("#npcAvatar").click(function(e) { $("#say").focus(); });
   $("#npcBackground").click(function(e) { $("#say").focus(); });
 
+  setTimeout("runTutorial()", 100);
+});
+
+function init() {
+  makeQuery("get_state(" + playerid + ", X)");
+
+  // sample setup
   addAction("give_gun", "Give gun to Martin");
   addAction("goto_8th", "Go to 8th Arondissment");
 
@@ -32,13 +39,6 @@ $(document).ready(function() {
     setBot("test_bot2");
   }
 
-  makeQuery("get_state(" + playerid + ", X)");
-
-  setTimeout("init()", 100);
-});
-
-function init() {
-  // sample setup
   say("You", "So, will you join us?");
   say("M.Martin", "...");
   say("You", "So, will you join us?");
@@ -86,11 +86,13 @@ function eventResult(eventText) {
   $('#npcMessages').scrollTop($('#npcMessages').prop("scrollHeight"));  
 }
 
+function mudAction(name) {
+  makeQuery("tell_mud(" + playerid + ",\"" + name + "\", X)");
+}
+
 function addAction(name, text) {
   var actionBtn = $("<p class=\"action\" />").text(text);
-  actionBtn.click(function(e) {
-    makeQuery("tell_mud(" + playerid + ",\"" + name + "\", X)");
-  });
+  actionBtn.click(function(e) { mudAction(name); });
   $("#actions").append(actionBtn);
 }
 
@@ -112,5 +114,11 @@ function setBot(btName) {
 function addInventory(obj) {
   $("#invEmpty").hide();
   $("#invList").append($("<li />").text(obj));
+}
+
+function clearAll() {
+  $("#npcMessages").empty();
+  $("#actions > p").remove();
+  $("#invList").empty();
 }
 
