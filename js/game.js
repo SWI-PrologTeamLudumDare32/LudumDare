@@ -16,6 +16,7 @@ $(document).ready(function() {
   $("#npcBackground").click(function(e) { $("#say").focus(); });
 
   setTimeout("runTutorial()", 100);
+  //setTimeout("endGame('You was captured by Nazi.')", 100);
 });
 
 function init() {
@@ -109,6 +110,22 @@ function setBot(btName) {
   } else {
     $("#npcAvatar").hide();
   }
+}
+
+function endGame(text) {
+  $("#overlay").hide();
+  $("#overlay").css("width", $("#gameSceen").width());
+  $("#overlay").css("height", $("#gameSceen").height());
+  $("#overlay").css({
+    top: $('#gameSceen').position().top,
+    left: $('#gameSceen').position().left,
+    position:'absolute'});
+  $("#overlay").fadeIn("slow", function() {
+    $("#endGameText").typed({
+      strings: [text + "<br><br><br><br><br><br><br><br><br><br> <span class='appendix'>Made for Ludum Dare 32 by SWI-Prolog community.<br>Thanks for playing.</span>."],
+      typeSpeed: 0
+    });
+  });
 }
 
 function addInventory(obj) {

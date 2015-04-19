@@ -32,6 +32,19 @@ div {
   border: 5px solid black;
 }
 
+#endGameText {
+  position: absolute;
+  top: 300px;
+  left: 10px;
+  color: white;
+  margin-left: 20px;
+  font-size: 25px;
+}
+
+#endGameText span.appendix {
+  font-size: 14px;
+}
+
 /** Avatar box */
 
 #npcAvatar {
