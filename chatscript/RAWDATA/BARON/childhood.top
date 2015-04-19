@@ -37,7 +37,7 @@ t: What scared you as a kid?
     a: ( [ dream nightmare ] ) Do you still have bad dreams now? 
 
         #! yes
-        b: ( ~yes ) That's too bad. Maybe you should give up sleeping. 
+        b: ( ~yes ) That's too bad. The times encourage it. 
 
         #! no 
         b: ( ~no ) Then you no longer go to horror movies, I assume. For me, these days are horror movie enough. 
