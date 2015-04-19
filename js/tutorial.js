@@ -79,7 +79,7 @@ function confirmGo() {
   mudAction = function(e) {
     if (e == "goto_citycenter") {
       $("#actions").hideBalloon();
-      eventResult(tutorName + " takes codebook.");
+      eventResult("You are leaving the tutorial.");
       timeouts.push(setTimeout('say(tutorName, "Good luck!")', 100));
       timeouts.push(setTimeout('curtainsDown()', 2000));
     }
