@@ -20,7 +20,7 @@ get_state(new, Javascript) :-
 	gensym(player, Player),
 	start_conversation(Player, baron, Said),
 	format(string(Javascript),
-	       'playerid = ~w; alert(\'you called get_state, baron said ~w\');', [Player, Said]).
+	       'playerid = \'~w\'; setLocation("Mansion"), setBot("Baron"); say("Baron", "~w"); addAction("go_park", "Go to park")', [Player, Said]).
 get_state(ID, Javascript) :-
 	ID \= new,
 	gensym(player, Player),  % punt and give them a new player
@@ -37,7 +37,7 @@ get_state(ID, Javascript) :-
 %	@param Message   what the user typed in
 %	@param Reply    The mud's reply, javascript to execute
 tell_mud(ID, Message, Reply) :-
-	format(string(Reply), 'alert(\'mud replied to ~w, who said ~w\');',
+	format(string(Reply), 'eventResult(\'mud replied to ~w, who said ~w\');',
 	       [ID, Message]).
 
 :- multifile sandbox:safe_primitive/1.

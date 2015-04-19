@@ -1,4 +1,4 @@
-var playerid = -1;
+var playerid = "new";
 var botName = "None";
 var locationName = "Void";
 
@@ -21,9 +21,8 @@ $(document).ready(function() {
 
 function init() {
   makeQuery("get_state(" + playerid + ", X)");
-
   // sample setup
-  addAction("give_gun", "Give gun to Martin");
+/*  addAction("give_gun", "Give gun to Martin");
   addAction("goto_8th", "Go to 8th Arondissment");
 
   addInventory("Notebook");
@@ -49,6 +48,7 @@ function init() {
   say("You", "So, will you join us?");
   say("M.Martin", "Yes, i will fight and die for France!");
   eventResult("(Martin takes a gun)");
+*/
 }
 
 function sendChat(botName, chatLine) {
@@ -70,15 +70,25 @@ function makeQuery(goal) {
   })
 }
 
-function say(who, what) {
+function say(who, what, callbackFunc) {
+  callbackFunc = typeof callbackFunc !== 'undefined' ? callbackFunc : function() { };
+
   var chatLine = $("<p class=\"chat\"></p>")
     .append($("<span class=\"who\"></span>").text(who + ":"))
     .append($("<pre class=\"message\"/>").text("-").typed({
         strings: [what],
+        callback: callbackFunc,
         typeSpeed: 0
       }));
   $("#npcMessages").append(chatLine);
   $('#npcMessages').scrollTop($('#npcMessages').prop("scrollHeight"));  
+}
+
+function sayMulti(sequence, i) {
+  i = typeof i !== 'undefined' ? i : 0;
+  if (i < sequence.length) {
+    say(sequence[i].who, sequence[i].what, function() { sayMulti(sequence, i + 1); });
+  }
 }
 
 function eventResult(eventText) {
