@@ -19,42 +19,17 @@ $(document).ready(function() {
   //setTimeout("endGame('You was captured by Nazi.')", 100);
 });
 
+// Inits a game
 function init() {
   makeQuery("get_state(" + playerid + ", X)");
-  // sample setup
-/*  addAction("give_gun", "Give gun to Martin");
-  addAction("goto_8th", "Go to 8th Arondissment");
-
-  addInventory("Notebook");
-
-  if (Math.random() > 0.5) {
-    setLocation("test_paris1");
-  } else {
-    setLocation("test_paris2");
-  }
-
-  if (Math.random() > 0.5) {
-    setBot("test_bot1");
-  } else {
-    setBot("test_bot2");
-  }
-
-  say("You", "So, will you join us?");
-  say("M.Martin", "...");
-  say("You", "So, will you join us?");
-  say("M.Martin", "...");
-  say("You", "So, will you join us?");
-  say("M.Martin", "...");
-  say("You", "So, will you join us?");
-  say("M.Martin", "Yes, i will fight and die for France!");
-  eventResult("(Martin takes a gun)");
-*/
 }
 
+// Sends chat line to server
 function sendChat(botName, chatLine) {
   makeQuery("tell_bot(" + playerid + ",\"" + botName+ "\",\"" + chatLine + "\", X)");
 }
 
+// Makes a Pengine call to server
 function makeQuery(goal) {
   return new Pengine({
     ask: goal,
@@ -70,6 +45,7 @@ function makeQuery(goal) {
   })
 }
 
+// Adds a chat line to NPC message box
 function say(who, what, callbackFunc) {
   callbackFunc = typeof callbackFunc !== 'undefined' ? callbackFunc : function() { };
 
@@ -84,20 +60,36 @@ function say(who, what, callbackFunc) {
   $('#npcMessages').scrollTop($('#npcMessages').prop("scrollHeight"));  
 }
 
-function sayMulti(sequence, i) {
-  i = typeof i !== 'undefined' ? i : 0;
-  if (i < sequence.length) {
-    say(sequence[i].who, sequence[i].what, function() { sayMulti(sequence, i + 1); });
+function wait(time, callbackFunc) {
+  if (typeof callbackFunc != 'undefined') {
+    setTimeout(callbackFunc, time);
   }
 }
 
-function eventResult(eventText) {
+// Processes commands. Command is eg.
+//   {func:"say", args:["Bot", "Hello"]}
+function processCommands(commands, i) {
+  i = typeof i !== 'undefined' ? i : 0;
+  if (i < commands.length) {
+    var args = commands[i].args.slice(0);
+    var funcName = commands[i].func;
+    args.push(function() { processCommands(commands, i + 1); });
+    window[funcName].apply(undefined, args);
+  }
+}
+
+function notify(eventText, callbackFunc) {
   var eventLine = $("<p class=\"event\"></p>").text(eventText);
   $("#npcMessages").append(eventLine);
   $('#npcMessages').scrollTop($('#npcMessages').prop("scrollHeight"));  
+
+  if (typeof callbackFunc != 'undefined') {
+    callbackFunc();
+  }
 }
 
-function mudAction(name) {
+// Callback func is not used since it shold be last command in sequence.
+function mudAction(name, callbackFunc) {
   makeQuery("tell_mud(" + playerid + ",\"" + name + "\", X)");
 }
 

@@ -37,7 +37,7 @@ get_state(ID, Javascript) :-
 %	@param Message   what the user typed in
 %	@param Reply    The mud's reply, javascript to execute
 tell_mud(ID, Message, Reply) :-
-	format(string(Reply), 'eventResult(\'mud replied to ~w, who said ~w\');',
+	format(string(Reply), 'notify(\'mud replied to ~w, who said ~w\');',
 	       [ID, Message]).
 
 :- multifile sandbox:safe_primitive/1.
