@@ -1,0 +1,11 @@
+
+match variables
+u:  (I _$emotion him)Why do you _0 him?   
+stores canonical form,
+'_0 is authorial form - careful, that includes number, etc.
+
+persistant user variables
+
+u: (my name is _~propername)Glad to meet you _0 ($username = _0)
+
+$$foo   temp user variable (lasts to end of volley)
