@@ -73,14 +73,6 @@ http:location(pldoc, root('help/source'), [priority(10)]).
 % as well, a workaround for one server per process
 :- setting(debug_port, Port), doc_server(Port).
 
-% Nice thing about SWI-Prolog, the interface to most
-% development environment is fairly simple, so it's practical
-% to set your environment for your own convenience. Here, we
-% launch our first handler
-:-  setting(debug_port, Port),
-	format(atom(X), 'http://localhost:~w', [Port]),
-	www_open_url(X).
-
 % and bring up a module in the editor
 :- edit('debug_start.pl').
 

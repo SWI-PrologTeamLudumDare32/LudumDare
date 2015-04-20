@@ -2,10 +2,60 @@
 match variables
 u:  (I _$emotion him)Why do you _0 him?   
 stores canonical form,
-'_0 is authorial form - careful, that includes number, etc.
+'_0 is authorial form - careful, that includes number, etc. this also works for patterns
+                             'do matches do but not did - did matches only did even without apostrophe
 
 persistant user variables
 
 u: (my name is _~propername)Glad to meet you _0 ($username = _0)
 
 $$foo   temp user variable (lasts to end of volley)
+
+^keep()  do not disable this rule after it produces output
+
+^repeat() even if using multiple rules, 
+
+topic statementcan have keep and/or repeat. This is equivilent to putting keep and/or repeat in
+every rule in the topic
+topic: ~introductions keep repeat []
+adding nostay: By default, if the bot gets a
+response from a certain topics, it 'stays' in this topic and gives it priority over other topics.
+
+%input  the id number (starting at 1) of the volley
+%userfirstline the id number of the first volley of this conversation
+
+# comments
+
+source ignores line breaks
+
+
+checking for a new conversation
+================================
+
+$pet = _0 $pethwhen = %input
+# This means we could write script that can tell if this is a new conversation or not.
+
+s: ($pet $petwhen<%userfirstline) I remember you have a $pet.
+
+Set/concept membership
+===========================
+concept: ~table_pets (dog cat lion goat elephant)
+t: ($pet?~table_pets) Do you ever feed your $pet table scraps during dinner?
+
+
+general advice
+=======================
+
+The bot selects the first line that generates output, prints the output, and stops matching
+(conclusion: order your patterns from the more specific to the more general)
+
+a non-canonical form in a pattern, it will match only that exact form, even if we don't use
+an apostrophe
+
+
+
+things I don't understand
+==========
+
+^reuse(FOO)
+

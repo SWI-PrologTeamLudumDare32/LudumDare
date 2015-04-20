@@ -1,3 +1,6 @@
+:- module(nanisearch, [nani_server/1,
+		       nani_volley/1,
+		       nani_look/2]).
 % NANI SEARCH - A sample adventure game
 
 % Nani Search is designed to illustrate Prolog programming.  It
@@ -6,7 +9,8 @@
 
 main(Player):- nani_search(Player).       % main entry point
 
-:- dynamic location/3, here/2, turned_off/2.
+:- dynamic location/3, here/2, turned_off/2,
+	have/2.
 
 nani_search(Player):-
   b_setval(player, Player),
@@ -48,7 +52,20 @@ command_loop:-
   repeat,
   get_command(X),
   do(X),
-  (dp(nanifound); X == quit).
+  (nanifound; X == quit).
+
+nani_server(Player):-
+  b_setval(player, Player),
+  init_dynamic_facts.
+
+nani_look(Player, Look) :-
+  b_setval(player, Player),
+  with_output_to(string(Look), look).
+
+nani_volley(Player) :-
+  b_setval(player, Player),
+  get_command(X),
+  do(X).
 
 dp(X) :-
 	b_getval(player, Player),
@@ -56,15 +73,15 @@ dp(X) :-
 dp_retractall(X) :-
 	b_getval(player, Player),
 	X =.. List,
-	append(List, Player, NList),
+	append(List, [Player], NList),
 	NX =.. NList,
 	retractall(NX).
 dp_asserta(X) :-
 	b_getval(player, Player),
 	X =.. List,
-	append(List, Player, NList),
+	append(List, [Player], NList),
 	NX =.. NList,
-	retractall(NX).
+	asserta(NX).
 
 % do - matches the input command with the predicate which carries out
 %     the command.  More general approaches which might work in the
@@ -154,6 +171,10 @@ connect(X,Y):-
 
 init_dynamic_facts :-
   b_getval(player, Player),
+  retractall(location(_, _, Player)),
+  retractall(here(_, Player)),
+  retractall(have(_, Player)),
+  retractall(turned_off(_, Player)),
   assertz(location(desk,office, Player)),
   assertz(location(apple,kitchen, Player)),
   assertz(location(flashlight,desk, Player)),
@@ -196,9 +217,8 @@ moveto(Room):-                  % update the logicbase with the
   dp_asserta(here(Room)).
 
 % look lists the things in a room, and the connections
-
 look:-
-  dp(here(Here)),
+  (   dp(here(Here)) ; gtrace),
   respond(['You are in the ',Here]),
   write('You can see the following things:'),nl,
   list_things(Here),
@@ -216,9 +236,6 @@ list_connections(Place):-
   tab(2),write(X),nl,
   fail.
 list_connections(_).
-
-% TODO DONE TO HERE with adding dp, dp_assert, dp_retractall where
-% needed
 
 % look_in allows the player to look inside a thing which might
 % contain other things
@@ -242,7 +259,7 @@ take(Thing):-
   respond(['You now have the ',Thing]).
 
 is_here(Thing):-
-  here(Here),
+  dp(here(Here)),
   contains(Thing,Here),!.          % don't backtrack
 is_here(Thing):-
   respond(['There is no ',Thing,' here']),
@@ -262,15 +279,15 @@ is_takable(_).                     % not furniture, ok to take
 
 move(Thing,have):-
   dp_retractall(location(Thing,_)),      % take it from its old place
-  asserta(have(Thing)).            % and add to your possessions
+  dp_asserta(have(Thing)).            % and add to your possessions
 
 % drop - allows the player to transfer a possession to a room
 
 drop(Thing):-
-  have(Thing),                     % you must have the thing to drop it
-  here(Here),                      % where are we
+  dp(have(Thing)),                     % you must have the thing to drop it
+  dp(here(Here)),                      % where are we
   dp_retractall(have(Thing)),
-  asserta(location(Thing,Here)).
+  dp_asserta(location(Thing,Here)).
 drop(Thing):-
   respond(['You don''t have the ',Thing]).
 
@@ -278,7 +295,7 @@ drop(Thing):-
 % eat, because every adventure game lets you eat stuff.
 
 eat(Thing):-
-  have(Thing),
+  dp(have(Thing)),
   eat2(Thing).
 eat(Thing):-
   respond(['You don''t have the ',Thing]).
@@ -296,14 +313,15 @@ eat2(Thing):-
 % inventory list your possesions
 
 inventory:-
-  have(_X),                         % make sure you have at least one thing
+  dp(have(_X)),                         % make sure you have at least one thing
   write('You have: '),nl,
   list_possessions.
 inventory:-
   write('You have nothing'),nl.
 
 list_possessions:-
-  have(X),
+  b_getval(player, Player),
+  have(X, Player),
   tab(2),write(X),nl,
   fail.
 list_possessions.
@@ -316,18 +334,20 @@ list_possessions.
 turn_on(light):-
   respond(['You can''t reach the switch and there''s nothing to stand on']).
 turn_on(Thing):-
-  have(Thing),
+  dp(have(Thing)),
   turn_on2(Thing).
 turn_on(Thing):-
   respond(['You don''t have the ',Thing]).
 
 turn_on2(Thing):-
-  \+ turned_off(Thing),
+  b_getval(player, Player),
+  \+ turned_off(Thing, Player),
   respond([Thing,' is already on']).
 turn_on2(Thing):-
-  turned_off(Thing),
+  b_getval(player, Player),
+  turned_off(Thing, Player),
   dp_retractall(turned_off(Thing)),
-  asserta(turned_off(Thing)),
+  dp_asserta(turned_off(Thing)),
   respond([Thing,' turned on']).
 turn_on2(Thing):-
   respond(['You can''t turn a ',Thing,' on']).
@@ -342,8 +362,9 @@ turn_off(_Thing):-
 % puzzles pertaining to other commands could easily be added.
 
 puzzle(goto(cellar)):-
-  have(flashlight),
-  \+ turned_off(flashlight),!.
+  dp(have(flashlight)),
+  b_getval(player, Player),
+  \+ turned_off(flashlight, Player),!.
 puzzle(goto(cellar)):-
   write('You can''t go to the cellar because it''s dark in the'),nl,
   write('cellar, and you''re afraid of the dark.'),nl,
@@ -438,8 +459,8 @@ det --> [a].
 noun(go_place,R) --> [R], {room(R)}.
 noun(go_place,'dining room') --> [dining,room].
 
-noun(thing,T) --> [T], {location(T,_)}.
-noun(thing,T) --> [T], {have(T)}.
+noun(thing,T) --> [T], {dp(location(T,_))}.
+noun(thing,T) --> [T], {dp(have(T))}.
 noun(thing,flashlight) --> [flash,light].
 noun(thing,'washing machine') --> [washing,machine].
 noun(thing,'dirty clothes') --> [dirty,clothes].
@@ -450,7 +471,7 @@ noun(thing,'dirty clothes') --> [dirty,clothes].
 % assume it is the room light.
 
 noun(thing,light) --> [X,light], {room(X)}.
-noun(thing,flashlight) --> [light], {have(flashlight)}.
+noun(thing,flashlight) --> [light], {dp(have(flashlight))}.
 noun(thing,light) --> [light].
 
 % readlist - read a list of words, based on a Clocksin & Mellish

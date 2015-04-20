@@ -19,12 +19,12 @@
 get_state(new, Javascript) :-
 	gensym(player, Player),
 	debug(chatscript(conversation), 'started conversation between ~w and ~w',
-	      [Player, baron]),
-	start_conversation(Player, baron, Said),
+	      [Player, antonette]),
+	start_conversation(Player, antonette, Said),
 	debug(chatscript(talk),
-	      '~w started by saying ~w to ~w', [baron, Said, Player]),
+	      '~w started by saying ~w to ~w', [antonette, Said, Player]),
 	format(string(Javascript),
-	       'playerid = \'~w\'; setLocation("Mansion"), setBot("Baron"); say("Baron", "~w"); addAction("go_park", "Go to park")', [Player, Said]),
+	       'playerid = \'~w\'; setLocation("Mansion"), setBot("Antonette"); say("Antonette", "~w"); addAction("go_park", "Go to park")', [Player, Said]),
 	debug(chatscript(javascript), '~w', [Javascript]).
 
 get_state(ID, Javascript) :-
