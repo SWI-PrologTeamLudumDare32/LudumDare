@@ -1,23 +1,23 @@
-# this function is executed once for every new user chatting with the Baron
-outputmacro: baron()  # you get baron by default
+# this function is executed once for every new user chatting with the Antonette
+outputmacro: antonette()  # you get antonette by default
 $token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
 
-^addtopic(~introductions)
+^addtopic(~work)
 $control_main = ~control
 $control_post = ~XPOSTPROCESS
 $userprompt = ^"%user: >"
-$botprompt = ^"BARON: "
+$botprompt = ^"ANTONETTE: "
 
 table: defaultbot (^name)
 ^createfact(^name defaultbot defaultbot)
 DATA:
-baron
+antonette
 
 topic: ~control system ()
 
-# on startup, do introduction
+# on startup, talk about work
 u: ( %input<%userfirstline) 
-	gambit(~introductions)
+	gambit(~work)
 
 u: (< shut up >) $shutup = 1
 u: (< talk  >) $shutup = null
