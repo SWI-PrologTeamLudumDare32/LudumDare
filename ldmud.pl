@@ -7,6 +7,7 @@
 :- use_module(library(pengines)).
 :- use_module(library(sandbox)).
 :- use_module(chatscript).
+:- use_module(nanisearch).
 
 %%	get_state(+ID:atom, -Javascript:string) is det
 %
@@ -21,10 +22,13 @@ get_state(new, Javascript) :-
 	debug(chatscript(conversation), 'started conversation between ~w and ~w',
 	      [Player, antonette]),
 	start_conversation(Player, antonette, Said),
+	with_output_to(string(MudInit), nani_server(Player)),
+	uri_encoded(query_value, MudInit, EncMudInit),
 	debug(chatscript(talk),
 	      '~w started by saying ~w to ~w', [antonette, Said, Player]),
 	format(string(Javascript),
-	       'playerid = \'~w\'; setLocation("Mansion"), setBot("Antonette"); say("Antonette", "~w"); addAction("go_park", "Go to park")', [Player, Said]),
+	       'playerid = \'~w\'; setLocation("Flat"), setBot("Antonette"); say("Action:", "~w"); say("Antonette", "~w"); addAction("goto(office)", "Go to office")',
+	       [Player, EncMudInit, Said]),
 	debug(chatscript(javascript), '~w', [Javascript]).
 
 get_state(ID, Javascript) :-
@@ -46,8 +50,11 @@ get_state(ID, Javascript) :-
 %	@param Message   what the user typed in
 %	@param Reply    The mud's reply, javascript to execute
 tell_mud(ID, Message, Reply) :-
-	format(string(Reply), 'notify(\'mud replied to ~w, who said ~w\');',
-	       [ID, Message]),
+	read_term_from_atom(Message, Command, []),
+	with_output_to(string(Out), nani_volley(ID, Command)),
+	uri_encoded(query_value, Out, Encoded),
+	format(string(Reply), 'notify(\'~w\');',
+	       [Encoded]),
 	debug(ldmud(javascript), '~w', [Reply]).
 
 :- multifile sandbox:safe_primitive/1.

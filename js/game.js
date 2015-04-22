@@ -48,11 +48,11 @@ function makeQuery(goal) {
 // Adds a chat line to NPC message box
 function say(who, what, callbackFunc) {
   callbackFunc = typeof callbackFunc !== 'undefined' ? callbackFunc : function() { };
-
+  var decwhat = decodeURIComponent(what);
   var chatLine = $("<p class=\"chat\"></p>")
     .append($("<span class=\"who\"></span>").text(who + ":"))
     .append($("<pre class=\"message\"/>").text("-").typed({
-        strings: [what],
+        strings: [decwhat],
         callback: callbackFunc,
         typeSpeed: 0
       }));
@@ -79,7 +79,8 @@ function processCommands(commands, i) {
 }
 
 function notify(eventText, callbackFunc) {
-  var eventLine = $("<p class=\"event\"></p>").text(eventText);
+  var decodeEventText = decodeURIComponent(eventText);
+  var eventLine = $("<p class=\"event\"></p>").text(decodeEventText);
   $("#npcMessages").append(eventLine);
   $('#npcMessages').scrollTop($('#npcMessages').prop("scrollHeight"));  
 

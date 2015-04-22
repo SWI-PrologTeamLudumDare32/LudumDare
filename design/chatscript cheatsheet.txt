@@ -52,10 +52,44 @@ The bot selects the first line that generates output, prints the output, and sto
 a non-canonical form in a pattern, it will match only that exact form, even if we don't use
 an apostrophe
 
+In the normal course of events, what happens is this…
+
+You are in a topic (however you got there).  You provide new input. The system will try to find a rejoinder for that input (and we assume there isnt one). So the system will try to find a responder within that topic (we assume there isnt one). So the system will try to use keywords of the input matched against keywords of OTHER topics to see if they might be useful. If it finds a match, it will test the responders of that topic. I presume you have NO topic which is prepared to respond to your input that the room is on fire (much less the exclamation about holy smokes).  So the system can randomly decide to quibble (if it can find a match).  If it rolls against that, or cant find a quibble. then it would next try to find a topic with keywords that match that it might gambit from. That probably fails because you still have no topic to cover fire. So ALL IT CAN DO is continue talking in the current topic until that topic is exhausted. What did you want it to do?  Randomly pick some other topic?
+
+The key thing is topics have keywords that allow the system to look into them when trying to match input. Do you have any topic that might match your inputs?
 
 
 things I don't understand
 ==========
 
 ^reuse(FOO)
+
+
+
+useful idioms and demos
+=======================
+
+
+
+t: I'm saying [something random][some silly thing][things about flowers and bunnies]
+
+
+
+# t: ^keep() [Hello] [Hi] [Hey], [talk] [speak] [say something] to me! I'm at the end of my topics!
+
+# tis will respond with each variation once
+u: (say it again) ^keep() something I repeat [a lot][a little].
+
+# only the first one matched will fire, because the bot wont repeat without ^repeat()
+u: (big ears) elephant
+
+u: (trunk) elephant
+
+topic: ~bot keep repeat [bot]
+
+t: you entered bot topic
+
+t: HI () [Hello] [Hi] [Hey], [talk] [speak] [say something] to me!
+u: WHAT (what are you) I am a bot.
+u: (tell me about yourself) ^reuse(WHAT) ^reuse(HI)
 

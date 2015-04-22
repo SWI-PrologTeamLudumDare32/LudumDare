@@ -1,6 +1,7 @@
-concept: ~germans (germans germans krauts nazis gestapo ss)
-concept: ~police (police gestapo cops milice)
-concept: ~fear_word (torture ~jail ~police danger fear scare frighten terror "what if they come")
-concept: ~milice (milice cops "french police")
-concept: ~war ("the war" struggle conflict occupation)
-concept: ~papers (papers transit_papers identity card)
+concept: ~german [german germans kraut nazi gestapo ss boche]
+concept: ~police [police gestapo cops milice]
+concept: ~fear_word [torture ~jail ~police danger fear scare frighten terror "what if they come"]
+concept: ~milice [milice cops "french police"]
+concept: ~war ["the war" struggle conflict occupation]
+concept: ~papers [papers transit_papers identity card]
+concept: ~resist [fight struggle resist battle secret]

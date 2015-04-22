@@ -1,0 +1,17 @@
+
+topic: ~resistance [resistance ~germans ~war]
+
+# antiauthority
+
+t: (!$antiauthority)$antiauthority= 0 random 10  # initialize
+
+t: speaking about resistance topic
+
+#! we won't let them
+u: (($antiauthority > 5) be not *~2 ~legal_allow {the} ~german) And what do you propose to do?
+
+u: (tell antiauthority) ^keep() ^repeat() $antiauthority
+
+
+t: () ^keep() ^repeat() end of resistance gambits
+

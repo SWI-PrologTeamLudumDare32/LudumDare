@@ -9,29 +9,12 @@ t: Oh Fabro, how are you feeling?
     #! still sick
     a: ([~badness ~illness]) Well, if you can go out and drink with your friends, you can work. Get out of here and go find a job.
 
-t: JOBWHERE (where * job) I overheard Mssr Hardy at the bakery say he was short handed, why don't you try there.
+?: JOBWHERE (where * job) I overheard Mssr Hardy at the bakery say he was short handed, why don't you try there.
+
+t: ^reuse(JOBWHERE)
 
 t: Go on, quit sitting there feeling sorry for yourself.
 
 t: We're going to starve if you don't go
 
-t: I'm saying [something random][some silly thing][things about flowers and bunnies]
-
 u: (~illness) Honestly, that's just become your excuse. Whats happened to my dashing brother, the famous mountaineer?
-
-t: ^keep() [Hello] [Hi] [Hey], [talk] [speak] [say something] to me! I'm at the end of my topics!
-
-# tis will respond with each variation once
-u: (say it again) ^keep() something I repeat [a lot][a little].
-
-# only the first one matched will fire, because the bot wont repeat without ^repeat()
-u: (big ears) elephant
-
-u: (trunk) elephant
-
-topic: ~bot keep repeat [bot]
-
-t: HI () [Hello] [Hi] [Hey], [talk] [speak] [say something] to me!
-u: WHAT (what are you) I am a bot.
-u: (tell me about yourself) ^reuse(WHAT) ^reuse(HI)
-

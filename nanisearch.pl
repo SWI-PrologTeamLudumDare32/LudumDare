@@ -1,6 +1,6 @@
 :- module(nanisearch, [nani_server/1,
-		       nani_volley/1,
-		       nani_look/2]).
+		       nani_volley/2,
+		       nani_look/1]).
 % NANI SEARCH - A sample adventure game
 
 % Nani Search is designed to illustrate Prolog programming.  It
@@ -56,15 +56,15 @@ command_loop:-
 
 nani_server(Player):-
   b_setval(player, Player),
-  init_dynamic_facts.
+  init_dynamic_facts,
+  look.
 
-nani_look(Player, Look) :-
+nani_look(Player) :-
   b_setval(player, Player),
-  with_output_to(string(Look), look).
+  look.
 
-nani_volley(Player) :-
+nani_volley(Player, X) :-
   b_setval(player, Player),
-  get_command(X),
   do(X).
 
 dp(X) :-
