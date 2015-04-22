@@ -6,6 +6,7 @@
 :- use_module(library(pengines)).
 :- use_module(library(sandbox)).
 :- use_module(chatscript).
+:- use_module(ui).
 :- use_module(library(settings)).
 
 :- initialization setting(ludumdare:chatscript_location, Loc),
@@ -26,9 +27,7 @@ tell_bot(ID, Bot, Message, Reply) :-
 	      '~w said ~w to ~w', [ID, Message, Bot]),
 	debug(chatscript(talk),
 	      '~w said ~w to ~w', [Bot, BotSaid, ID]),
-	format(string(Reply),
-               'processCommands([ {func:"say", args:["You", "~w"]}, {func:"say", args:["~w", "~w"]} ]);',
-	       [Message, Bot, BotSaid]),
+        make_ui_call([say("You", Message), say(Bot, BotSaid)], Reply),
 	debug(chatscript(javascript),
 	      '~w', [Reply]).
 

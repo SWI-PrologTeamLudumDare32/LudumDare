@@ -15,7 +15,7 @@
 %
 make_ui_call(Cmds, Js) :-
   make_message(Cmds, JsArgs),
-  format(string(Js), "processCommands(~w)", JsArgs).
+  format(string(Js), "processCommands([~w])", JsArgs).
 
 % Create Javascript for a list of commands
 %
