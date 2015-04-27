@@ -18,7 +18,7 @@
 %	and the Javascript will set a javascript var playerid
 %	for a new player
 get_state(new, Javascript) :-
-	gensym(player, Player),
+	uuid(Player),
 	debug(chatscript(conversation), 'started conversation between ~w and ~w',
 	      [Player, antonette]),
 	start_conversation(Player, antonette, Said),

@@ -26,7 +26,7 @@ function init() {
 
 // Sends chat line to server
 function sendChat(botName, chatLine) {
-  makeQuery("tell_bot(" + playerid + ",\"" + botName+ "\",\"" + chatLine + "\", X)");
+  makeQuery("tell_bot(\'" + playerid + "\',\"" + botName+ "\",\"" + chatLine + "\", X)");
 }
 
 // Makes a Pengine call to server
@@ -91,7 +91,7 @@ function notify(eventText, callbackFunc) {
 
 // Callback func is not used since it shold be last command in sequence.
 function mudAction(name, callbackFunc) {
-  makeQuery("tell_mud(" + playerid + ",\"" + name + "\", X)");
+  makeQuery("tell_mud(\'" + playerid + "\',\"" + name + "\", X)");
 }
 
 function addAction(name, text) {
