@@ -61,7 +61,7 @@ function confirmGive() {
   mudAction = function(e) {
     if (e == "give_codebook") {
       $("#actions").hideBalloon();
-      eventResult(tutorName + " takes codebook.");
+      notify(tutorName + " takes codebook.");
       timeouts.push(setTimeout('say(tutorName, "Very well.")', 1000));
       timeouts.push(setTimeout('say(tutorName, "During your quest you will have to travel to different places.")', 3000));
       timeouts.push(setTimeout('say(tutorName, "Go to city center to begin your mission.")', 7000));
@@ -79,7 +79,7 @@ function confirmGo() {
   mudAction = function(e) {
     if (e == "goto_citycenter") {
       $("#actions").hideBalloon();
-      eventResult("You are leaving the tutorial.");
+      notify("You are leaving the tutorial.");
       timeouts.push(setTimeout('say(tutorName, "Good luck!")', 100));
       timeouts.push(setTimeout('curtainsDown()', 2000));
     }
