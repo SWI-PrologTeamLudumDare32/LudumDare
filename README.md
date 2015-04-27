@@ -2,6 +2,42 @@
 
 Our Ludum Dare entry
 
+## Installing Francs Tireurs
+
+You'll need to install chatscript from chatscript.sourceforge.net
+
+It comes with binaries for linux 32 and 64 and windows.exe
+./LinuxChatScript on a mac
+
+copy the files in LudumDare/chatscript into the root of the chatscript install
+
+Copy the directories under RAWDATA into the chatscript RAWDATA.
+
+start chatscript and type
+
+:build 0
+:build antonette
+:build baron
+
+to run chatscript as a server, add port=1024
+
+if you need to run on diff port, change the port in chatscript, and in the prolog query 
+
+set_setting(ludumdare:chatscript_location, localhost:4050).
+save_settings.
+
+This makes a settings.db file in your LD install root
+Please don't check this file in.
+
+Start prolog and browse 
+
+http://localhost:7777/f/francs_tireurs.html
+
+
+
+
+
+
 ## Starting the server
 
 To start in debug mode just consult debug_start.pl
