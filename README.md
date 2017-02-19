@@ -24,7 +24,8 @@ start chatscript and type
 
 :build baron
 
-to run chatscript as a server, add port=1024
+to run chatscript as a server on 1024 run without args.
+If you need it to be on something besides 1024, add port=1024
 
 if you need to run on diff port, change the port in chatscript, and in the prolog query 
 
@@ -33,14 +34,6 @@ save_settings.
 
 This makes a settings.db file in your LD install root
 Please don't check this file in.
-
-Start prolog and browse 
-
-http://localhost:7777/f/francs_tireurs.html
-
-
-
-
 
 
 ## Starting the server
@@ -68,6 +61,12 @@ then
 ~~~~~
 ?- save_settings.
 ~~~~~
+
+Now browse
+
+http://localhost:7777/f/francs_tireurs.html
+
+for the game.
 
 ## Pengines demo
 
