@@ -11,12 +11,17 @@ It comes with binaries for linux 32 and 64 and windows.exe
 
 copy the files in LudumDare/chatscript into the root of the chatscript install
 
-Copy the directories under RAWDATA into the chatscript RAWDATA.
+Copy the directories under RAWDATA into the chatscript RAWDATA if you're on windows. 
+On linux your life will be simpler if you make a symlink to BARON and ANTOINETTE directories.
 
 start chatscript and type
 
 :build 0
+
+:build Harry
+
 :build antonette
+
 :build baron
 
 to run chatscript as a server, add port=1024

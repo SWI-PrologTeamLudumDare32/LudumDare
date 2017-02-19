@@ -1,10 +1,10 @@
 # this function is executed once for every new user chatting with the Antonette
 outputmacro: antonette()  # you get antonette by default
-$token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
+$cs_token = #DO_INTERJECTION_SPLITTING  | #DO_SUBSTITUTE_SYSTEM   | #DO_NUMBER_MERGE | #DO_DATE_MERGE  | #DO_PROPERNAME_MERGE  | #DO_SPELLCHECK  | #DO_PARSE 
 
 ^addtopic(~work)
-$control_main = ~control
-$control_post = ~XPOSTPROCESS
+$cs_control_main = ~control
+$cs_control_post = ~XPOSTPROCESS
 $userprompt = ^"%user: >"
 $botprompt = ^"ANTONETTE: "
 
