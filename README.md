@@ -4,6 +4,10 @@ Our Ludum Dare entry
 
 ## Installing Francs Tireurs
 
+Install pack plchatscript with
+
+pack_install(plchatscript).
+
 You'll need to install chatscript from chatscript.sourceforge.net
 
 It comes with binaries for linux 32 and 64 and windows.exe

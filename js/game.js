@@ -35,7 +35,7 @@ function makeQuery(goal) {
     ask: goal,
     template: "X",
     onsuccess: function() {
-      var js = this.data[0].functor;
+      var js = this.data[0];
       eval(js);
     },
     onerror: function() {
@@ -141,4 +141,5 @@ function clearAll() {
   $("#actions > p").remove();
   $("#invList").empty();
 }
+
 
